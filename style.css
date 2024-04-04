@@ -28,12 +28,16 @@ height: 100vh;
 
 .navbar{
     /* background-color: #28000394; */
-    color: #E2F4C5;
+    color: #ffffff;
     height: 5rem;
-    position: relative;
+    position: sticky;
     width: 100%;
-    top: 5%;
+    top: 0.01%;
     z-index: 999;
+}
+.navBg{
+    background-color: #fff7f7e2;
+    color: #000000;
 }
 .navbar ul{
     padding-block: 2rem;
@@ -41,10 +45,11 @@ height: 100vh;
     justify-content: center;
     list-style: none;
     
-   
+    
 }
-.navbar ul li{
+.navbar ul li{  
     padding-inline: 2rem;
+    padding-block: 0.5rem;
     font-size:larger;
     font-weight:bold;
 }
@@ -106,7 +111,7 @@ height: 100vh;
    min-width: 100vw;
    min-height: 100vh;
    z-index: -1;
-   opacity: 1.5;
+   opacity: 0.9;
 }                                               
 .emotion-al-container {
     /* background-image: url(./images/shape-1.png);
@@ -114,9 +119,10 @@ height: 100vh;
     background-repeat: no-repeat;
     background-size: cover; */
     /* opacity: 0.6; */
+    /* background-color: #b46e1d; */
     text-align: center;
     margin-left: 15rem;
-    margin-top: 5rem;
+    margin-top: 10rem;
     width: 64rem;
     padding: 50px;
     height: 20rem;
@@ -131,7 +137,7 @@ height: 100vh;
 }
     
 
-@keyframes fadeIn {
+/* @keyframes fadeIn {
     from {
       opacity: 0;
       transform: translateY(-20px);
@@ -140,7 +146,7 @@ height: 100vh;
       opacity: 1;
       transform: translateY(0);
     }
-  }
+  } */
 .emotion-al-title {
     margin:0;
     margin-left: 12px;
@@ -199,9 +205,7 @@ height: 100vh;
     margin-right: 9rem;
     margin-top: 7rem;
 }
-.content-defination {
-    display: flex;
-}
+
 .content-emotion-al-demo{
     display: flex;
 }
@@ -216,6 +220,8 @@ height: 100vh;
 .content-defination {
     margin-inline-start: 8rem;
     margin-top: 11rem;
+    display: flex;
+    height: 32rem;
 }
 .content-emotion-al-demo{
     margin-inline-start: 8rem;
@@ -374,3 +380,30 @@ ul{
         transform: translateY(30px);
     }
 }
+
+.hidden-left{
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateX(-20%);
+    transition: all 1s;
+}
+
+.hidden-right{
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateX(10%);
+    transition: all 1s;
+}
+
+.show{
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(0);
+}
+
+@media(prefers-reduced-motion){
+    .hidden{
+        transition: none;
+    }
+}
+

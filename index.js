@@ -1,49 +1,42 @@
-// const div = document.querySelector(".head");
-// const text ="World's Smallest Facial Emotion Recognition AI"
-
-// function textTypingEffect(element , text , i=0){
-//     element.textContent += text[i];
-//     if (i === text.length - 1) {
-//         return;
-//     }
-//     setTimeout(()=> {
-//         textTypingEffect(element, text, i + 1)
-
-//     },50);
-//     // setTimeout(()=> textTypingEffect(element, text, i + 1),50);
-// }
-
-// textTypingEffect(div,text);
-const animElements = document.querySelectorAll('.anim');
-
-function debounce(func, wait = 20, immediate = true) {
-  let timeout;
-  return function() {
-    const context = this, args = arguments;
-    const later = function() {
-      timeout = null;
-      if (!immediate) func.apply(context, args);
-    };
-    const callNow = immediate && !timeout;
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-    if (callNow) func.apply(context, args);
-  };
-}
-
-function checkSlide() {
-  animElements.forEach(animElement => {
-    const slideInAt = (window.scrollY + window.innerHeight) - animElement.clientHeight / 2;
-    const elementBottom = animElement.offsetTop + animElement.clientHeight;
-    const isHalfShown = slideInAt > animElement.offsetTop;
-    const isNotScrolledPast = window.scrollY < elementBottom;
-    if (isHalfShown && isNotScrolledPast) {
-      animElement.classList.add('active');
-    } else {
-      animElement.classList.remove('active');
+// Animation on scroll
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach((entry)=> {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show')
+    }else{
+      entry.target.classList.remove('show')
     }
-  });
+  })
+})
+
+const hiddenEle = document.querySelectorAll('.hidden-left')
+hiddenEle.forEach((el) => observer.observe(el));
+
+const observerRight = new IntersectionObserver((entries)=>{
+  entries.forEach((entry)=> {
+    // console.log(entry);
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show')
+    }else{
+      entry.target.classList.remove('show')
+    }
+  })
+})
+
+const hiddenRightEle = document.querySelectorAll('.hidden-right')
+hiddenRightEle.forEach((el) => observerRight.observe(el));
+
+// Navbar scroll animation
+let navbar = document.getElementById('navbar')
+function navColorChange() {
+  let scrollValue = window.scrollY
+  
+  console.log(scrollValue);
+  if (scrollValue > 160) {
+    navbar.classList.add('navBg')
+  }else{
+    navbar.classList.remove('navBg')
+  }
 }
 
-window.addEventListener('scroll', debounce(checkSlide));
-checkSlide();
+window.addEventListener('scroll' , navColorChange)
